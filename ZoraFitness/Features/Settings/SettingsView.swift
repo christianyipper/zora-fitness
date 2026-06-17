@@ -11,8 +11,8 @@ struct SettingsView: View {
 
         NavigationStack {
             Form {
-                personalSection(settings: settings)
-                trainingSection(settings: settings)
+                personalSection(settings: $settings)
+                trainingSection(settings: $settings)
                 healthSection
                 aboutSection
             }

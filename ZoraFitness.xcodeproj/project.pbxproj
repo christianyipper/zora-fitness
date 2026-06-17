@@ -7,56 +7,56 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		83B0BFDFB3CBBC178FC6AF8A /* ZoraFitnessApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FCE853C16700751CDE979EA /* ZoraFitnessApp.swift */; };
-		A9E98B6C1F7F09F2329D0E59 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC5FCB13CD823001D04D416D /* ContentView.swift */; };
-		6C0C83380E8E38F5F8267A46 /* HealthKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B32E62B34B3DA81116E01A73 /* HealthKitManager.swift */; };
+		09ABD7C2200D9112E1126CAC /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7EA45539D9FE527EFC9623A /* HealthKit.framework */; };
+		0A60E8A1415D944C7A14C8F9 /* AnalyticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5750E0A415E9286FF5AB10 /* AnalyticsView.swift */; };
+		0DE423C119072D16EC2D8568 /* DashboardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 155ABC339268F58E92F392C3 /* DashboardViewModel.swift */; };
+		128E3394BCCCEF6D066CF701 /* AppTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8883BD27880984208F3FECB2 /* AppTheme.swift */; };
 		22F223562D3789053B82D4BD /* DailyMetrics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D6CC0CE12AC2D1A4E690909 /* DailyMetrics.swift */; };
+		6131842C2E61D1CCAE7CF156 /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6CD4A4DA57FF16539EEE9C3 /* Charts.framework */; };
+		6C0C83380E8E38F5F8267A46 /* HealthKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B32E62B34B3DA81116E01A73 /* HealthKitManager.swift */; };
+		733F40C7943C15F23A137841 /* WorkoutDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 178F2938DBD9C965FC986505 /* WorkoutDetailView.swift */; };
+		748269BAEB442F7240D88E32 /* WorkoutHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9D84CB4CC082C250D12C0C5 /* WorkoutHistoryView.swift */; };
+		83B0BFDFB3CBBC178FC6AF8A /* ZoraFitnessApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FCE853C16700751CDE979EA /* ZoraFitnessApp.swift */; };
+		8D523F2115DE2F8767F06885 /* WorkoutHistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73F741D1F022B5C5415FBAB1 /* WorkoutHistoryViewModel.swift */; };
+		A530E64E00B6EE25CED4381D /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 565C58E80020FE599810631B /* DashboardView.swift */; };
+		A9E98B6C1F7F09F2329D0E59 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC5FCB13CD823001D04D416D /* ContentView.swift */; };
+		B8CE371BFFE64A0566637027 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73421D0B39274A64D7651BBC /* SettingsView.swift */; };
+		BEAFFF241AFFC5C28DF4CD6D /* RingProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 897D815C90647D993B5E4B96 /* RingProgressView.swift */; };
+		C28B73838040653D42F4ADA2 /* SettingsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70E7636D12567EB975915CEB /* SettingsStore.swift */; };
+		C7D5E8C9D0AB268B98A360EB /* MathExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6944DB4EEAA5A7C742B36BE4 /* MathExtensions.swift */; };
 		CC30C7EAA4BD0B672B9F9CB2 /* WorkoutSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = FED3A8E8EFE437169361A306 /* WorkoutSession.swift */; };
 		CEAC6D35C309C2A38E8CA3D2 /* SleepSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 337FE748000D5C60215701B1 /* SleepSession.swift */; };
 		D7D8A921C8B73926DD81B10E /* RecoveryCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58318B0A5FF31861BFF514C0 /* RecoveryCalculator.swift */; };
-		FAC83F63A29DEA67B4335431 /* StrainCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3933CEAF56E466C677F53744 /* StrainCalculator.swift */; };
-		C7D5E8C9D0AB268B98A360EB /* MathExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6944DB4EEAA5A7C742B36BE4 /* MathExtensions.swift */; };
-		C28B73838040653D42F4ADA2 /* SettingsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70E7636D12567EB975915CEB /* SettingsStore.swift */; };
-		A530E64E00B6EE25CED4381D /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 565C58E80020FE599810631B /* DashboardView.swift */; };
-		0DE423C119072D16EC2D8568 /* DashboardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 155ABC339268F58E92F392C3 /* DashboardViewModel.swift */; };
-		748269BAEB442F7240D88E32 /* WorkoutHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9D84CB4CC082C250D12C0C5 /* WorkoutHistoryView.swift */; };
-		8D523F2115DE2F8767F06885 /* WorkoutHistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73F741D1F022B5C5415FBAB1 /* WorkoutHistoryViewModel.swift */; };
-		733F40C7943C15F23A137841 /* WorkoutDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 178F2938DBD9C965FC986505 /* WorkoutDetailView.swift */; };
-		0A60E8A1415D944C7A14C8F9 /* AnalyticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5750E0A415E9286FF5AB10 /* AnalyticsView.swift */; };
 		E63183F6447317BA32FC1EF4 /* AnalyticsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6CA1F9A36B1DE4ED4BA7EFE /* AnalyticsViewModel.swift */; };
-		B8CE371BFFE64A0566637027 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73421D0B39274A64D7651BBC /* SettingsView.swift */; };
-		BEAFFF241AFFC5C28DF4CD6D /* RingProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 897D815C90647D993B5E4B96 /* RingProgressView.swift */; };
 		F2BB8BFE5B3A3573AE60EFAF /* ChartCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1501DB631094DFD268F18948 /* ChartCard.swift */; };
-		128E3394BCCCEF6D066CF701 /* AppTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8883BD27880984208F3FECB2 /* AppTheme.swift */; };
-		09ABD7C2200D9112E1126CAC /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7EA45539D9FE527EFC9623A /* HealthKit.framework */; };
-		6131842C2E61D1CCAE7CF156 /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6CD4A4DA57FF16539EEE9C3 /* Charts.framework */; };
+		FAC83F63A29DEA67B4335431 /* StrainCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3933CEAF56E466C677F53744 /* StrainCalculator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		8208318ECD8AA1CB2D1E9C53 /* ZoraFitness.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZoraFitness.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		E7EA45539D9FE527EFC9623A /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
-		B6CD4A4DA57FF16539EEE9C3 /* Charts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Charts.framework; path = System/Library/Frameworks/Charts.framework; sourceTree = SDKROOT; };
-		8FCE853C16700751CDE979EA /* ZoraFitnessApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZoraFitnessApp.swift; sourceTree = "<group>"; };
-		FC5FCB13CD823001D04D416D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		B32E62B34B3DA81116E01A73 /* HealthKitManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitManager.swift; sourceTree = "<group>"; };
 		0D6CC0CE12AC2D1A4E690909 /* DailyMetrics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyMetrics.swift; sourceTree = "<group>"; };
-		FED3A8E8EFE437169361A306 /* WorkoutSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutSession.swift; sourceTree = "<group>"; };
+		1501DB631094DFD268F18948 /* ChartCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartCard.swift; sourceTree = "<group>"; };
+		155ABC339268F58E92F392C3 /* DashboardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewModel.swift; sourceTree = "<group>"; };
+		178F2938DBD9C965FC986505 /* WorkoutDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutDetailView.swift; sourceTree = "<group>"; };
 		337FE748000D5C60215701B1 /* SleepSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepSession.swift; sourceTree = "<group>"; };
-		58318B0A5FF31861BFF514C0 /* RecoveryCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecoveryCalculator.swift; sourceTree = "<group>"; };
 		3933CEAF56E466C677F53744 /* StrainCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrainCalculator.swift; sourceTree = "<group>"; };
+		565C58E80020FE599810631B /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
+		58318B0A5FF31861BFF514C0 /* RecoveryCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecoveryCalculator.swift; sourceTree = "<group>"; };
 		6944DB4EEAA5A7C742B36BE4 /* MathExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MathExtensions.swift; sourceTree = "<group>"; };
 		70E7636D12567EB975915CEB /* SettingsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsStore.swift; sourceTree = "<group>"; };
-		565C58E80020FE599810631B /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
-		155ABC339268F58E92F392C3 /* DashboardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewModel.swift; sourceTree = "<group>"; };
-		C9D84CB4CC082C250D12C0C5 /* WorkoutHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutHistoryView.swift; sourceTree = "<group>"; };
-		73F741D1F022B5C5415FBAB1 /* WorkoutHistoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutHistoryViewModel.swift; sourceTree = "<group>"; };
-		178F2938DBD9C965FC986505 /* WorkoutDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutDetailView.swift; sourceTree = "<group>"; };
-		BC5750E0A415E9286FF5AB10 /* AnalyticsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsView.swift; sourceTree = "<group>"; };
-		F6CA1F9A36B1DE4ED4BA7EFE /* AnalyticsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsViewModel.swift; sourceTree = "<group>"; };
 		73421D0B39274A64D7651BBC /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
-		897D815C90647D993B5E4B96 /* RingProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RingProgressView.swift; sourceTree = "<group>"; };
-		1501DB631094DFD268F18948 /* ChartCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartCard.swift; sourceTree = "<group>"; };
+		73F741D1F022B5C5415FBAB1 /* WorkoutHistoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutHistoryViewModel.swift; sourceTree = "<group>"; };
+		8208318ECD8AA1CB2D1E9C53 /* ZoraFitness.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZoraFitness.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8883BD27880984208F3FECB2 /* AppTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTheme.swift; sourceTree = "<group>"; };
+		897D815C90647D993B5E4B96 /* RingProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RingProgressView.swift; sourceTree = "<group>"; };
+		8FCE853C16700751CDE979EA /* ZoraFitnessApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZoraFitnessApp.swift; sourceTree = "<group>"; };
+		B32E62B34B3DA81116E01A73 /* HealthKitManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitManager.swift; sourceTree = "<group>"; };
+		B6CD4A4DA57FF16539EEE9C3 /* Charts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Charts.framework; path = System/Library/Frameworks/Charts.framework; sourceTree = SDKROOT; };
+		BC5750E0A415E9286FF5AB10 /* AnalyticsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsView.swift; sourceTree = "<group>"; };
+		C9D84CB4CC082C250D12C0C5 /* WorkoutHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutHistoryView.swift; sourceTree = "<group>"; };
+		E7EA45539D9FE527EFC9623A /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
+		F6CA1F9A36B1DE4ED4BA7EFE /* AnalyticsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsViewModel.swift; sourceTree = "<group>"; };
+		FC5FCB13CD823001D04D416D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		FED3A8E8EFE437169361A306 /* WorkoutSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutSession.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,31 +72,59 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		A596E2AE9092612AA43E9A43 = {
+		08BAAF0AE3DDE19846FDB5E5 /* Features */ = {
 			isa = PBXGroup;
 			children = (
-				FEFD90D4921AE42A5A02C15F /* ZoraFitness */,
-				DDE3A7FCA86E5A091AE6A491 /* Products */,
+				470E3916E7C41924C7F37B94 /* Dashboard */,
+				D2036101800AB357A9C255FB /* Workouts */,
+				B77D57E1122A4F67E1F101F4 /* Analytics */,
+				0E29EA7E0AE9734425CC4BB3 /* Settings */,
 			);
+			path = Features;
 			sourceTree = "<group>";
 		};
-		DDE3A7FCA86E5A091AE6A491 /* Products */ = {
+		0E29EA7E0AE9734425CC4BB3 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
-				8208318ECD8AA1CB2D1E9C53 /* ZoraFitness.app */,
+				73421D0B39274A64D7651BBC /* SettingsView.swift */,
 			);
-			name = Products;
+			path = Settings;
 			sourceTree = "<group>";
 		};
-		FEFD90D4921AE42A5A02C15F /* ZoraFitness */ = {
+		0F51409082B0639B2FBB35B3 /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				854A9E92A2D78554D9A1F490 /* App */,
-				9D2B3449A5E2B106415024D6 /* Core */,
-				08BAAF0AE3DDE19846FDB5E5 /* Features */,
-				DFAC815A744D848613CE9C49 /* Shared */,
+				897D815C90647D993B5E4B96 /* RingProgressView.swift */,
+				1501DB631094DFD268F18948 /* ChartCard.swift */,
 			);
-			path = ZoraFitness;
+			path = Components;
+			sourceTree = "<group>";
+		};
+		1E0F161A83FCFFCEEB66BDCF /* Theme */ = {
+			isa = PBXGroup;
+			children = (
+				8883BD27880984208F3FECB2 /* AppTheme.swift */,
+			);
+			path = Theme;
+			sourceTree = "<group>";
+		};
+		24DE3A77F9120EE700043DAF /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				0D6CC0CE12AC2D1A4E690909 /* DailyMetrics.swift */,
+				FED3A8E8EFE437169361A306 /* WorkoutSession.swift */,
+				337FE748000D5C60215701B1 /* SleepSession.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		470E3916E7C41924C7F37B94 /* Dashboard */ = {
+			isa = PBXGroup;
+			children = (
+				565C58E80020FE599810631B /* DashboardView.swift */,
+				155ABC339268F58E92F392C3 /* DashboardViewModel.swift */,
+			);
+			path = Dashboard;
 			sourceTree = "<group>";
 		};
 		854A9E92A2D78554D9A1F490 /* App */ = {
@@ -127,14 +155,21 @@
 			path = HealthKit;
 			sourceTree = "<group>";
 		};
-		24DE3A77F9120EE700043DAF /* Models */ = {
+		A596E2AE9092612AA43E9A43 = {
 			isa = PBXGroup;
 			children = (
-				0D6CC0CE12AC2D1A4E690909 /* DailyMetrics.swift */,
-				FED3A8E8EFE437169361A306 /* WorkoutSession.swift */,
-				337FE748000D5C60215701B1 /* SleepSession.swift */,
+				FEFD90D4921AE42A5A02C15F /* ZoraFitness */,
+				DDE3A7FCA86E5A091AE6A491 /* Products */,
+				C0A1705E2FE250E700964216 /* Recovered References */,
 			);
-			path = Models;
+			sourceTree = "<group>";
+		};
+		B1D9B9DC30E6AA87A1A84E83 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				70E7636D12567EB975915CEB /* SettingsStore.swift */,
+			);
+			path = Settings;
 			sourceTree = "<group>";
 		};
 		B674414792257C17DAA5E1F3 /* Algorithms */ = {
@@ -147,32 +182,22 @@
 			path = Algorithms;
 			sourceTree = "<group>";
 		};
-		B1D9B9DC30E6AA87A1A84E83 /* Settings */ = {
+		B77D57E1122A4F67E1F101F4 /* Analytics */ = {
 			isa = PBXGroup;
 			children = (
-				70E7636D12567EB975915CEB /* SettingsStore.swift */,
+				BC5750E0A415E9286FF5AB10 /* AnalyticsView.swift */,
+				F6CA1F9A36B1DE4ED4BA7EFE /* AnalyticsViewModel.swift */,
 			);
-			path = Settings;
+			path = Analytics;
 			sourceTree = "<group>";
 		};
-		08BAAF0AE3DDE19846FDB5E5 /* Features */ = {
+		C0A1705E2FE250E700964216 /* Recovered References */ = {
 			isa = PBXGroup;
 			children = (
-				470E3916E7C41924C7F37B94 /* Dashboard */,
-				D2036101800AB357A9C255FB /* Workouts */,
-				B77D57E1122A4F67E1F101F4 /* Analytics */,
-				0E29EA7E0AE9734425CC4BB3 /* Settings */,
+				E7EA45539D9FE527EFC9623A /* HealthKit.framework */,
+				B6CD4A4DA57FF16539EEE9C3 /* Charts.framework */,
 			);
-			path = Features;
-			sourceTree = "<group>";
-		};
-		470E3916E7C41924C7F37B94 /* Dashboard */ = {
-			isa = PBXGroup;
-			children = (
-				565C58E80020FE599810631B /* DashboardView.swift */,
-				155ABC339268F58E92F392C3 /* DashboardViewModel.swift */,
-			);
-			path = Dashboard;
+			name = "Recovered References";
 			sourceTree = "<group>";
 		};
 		D2036101800AB357A9C255FB /* Workouts */ = {
@@ -185,21 +210,12 @@
 			path = Workouts;
 			sourceTree = "<group>";
 		};
-		B77D57E1122A4F67E1F101F4 /* Analytics */ = {
+		DDE3A7FCA86E5A091AE6A491 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				BC5750E0A415E9286FF5AB10 /* AnalyticsView.swift */,
-				F6CA1F9A36B1DE4ED4BA7EFE /* AnalyticsViewModel.swift */,
+				8208318ECD8AA1CB2D1E9C53 /* ZoraFitness.app */,
 			);
-			path = Analytics;
-			sourceTree = "<group>";
-		};
-		0E29EA7E0AE9734425CC4BB3 /* Settings */ = {
-			isa = PBXGroup;
-			children = (
-				73421D0B39274A64D7651BBC /* SettingsView.swift */,
-			);
-			path = Settings;
+			name = Products;
 			sourceTree = "<group>";
 		};
 		DFAC815A744D848613CE9C49 /* Shared */ = {
@@ -211,21 +227,15 @@
 			path = Shared;
 			sourceTree = "<group>";
 		};
-		0F51409082B0639B2FBB35B3 /* Components */ = {
+		FEFD90D4921AE42A5A02C15F /* ZoraFitness */ = {
 			isa = PBXGroup;
 			children = (
-				897D815C90647D993B5E4B96 /* RingProgressView.swift */,
-				1501DB631094DFD268F18948 /* ChartCard.swift */,
+				854A9E92A2D78554D9A1F490 /* App */,
+				9D2B3449A5E2B106415024D6 /* Core */,
+				08BAAF0AE3DDE19846FDB5E5 /* Features */,
+				DFAC815A744D848613CE9C49 /* Shared */,
 			);
-			path = Components;
-			sourceTree = "<group>";
-		};
-		1E0F161A83FCFFCEEB66BDCF /* Theme */ = {
-			isa = PBXGroup;
-			children = (
-				8883BD27880984208F3FECB2 /* AppTheme.swift */,
-			);
-			path = Theme;
+			path = ZoraFitness;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -256,7 +266,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1500;
-				LastUpgradeCheck = 1500;
+				LastUpgradeCheck = 2650;
 				TargetAttributes = {
 					ABA6ED511434A66EA0B947BF = {
 						CreatedOnToolsVersion = 15.0;
@@ -323,118 +333,88 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		E9E50B5AB5060085C5FCB843 /* Debug */ = {
+		27B8583EDFA6A4AB5038C37F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-			ALWAYS_SEARCH_USER_PATHS = NO;
-			CLANG_ANALYZER_NONNULL = YES;
-			CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
-			CLANG_ENABLE_MODULES = YES;
-			CLANG_ENABLE_OBJC_ARC = YES;
-			CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
-			CLANG_WARN_BOOL_CONVERSION = YES;
-			CLANG_WARN_COMMA = YES;
-			CLANG_WARN_CONSTANT_CONVERSION = YES;
-			CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
-			CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-			CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-			CLANG_WARN_EMPTY_BODY = YES;
-			CLANG_WARN_ENUM_CONVERSION = YES;
-			CLANG_WARN_INFINITE_RECURSION = YES;
-			CLANG_WARN_INT_CONVERSION = YES;
-			CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
-			CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
-			CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
-			CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-			CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
-			CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
-			CLANG_WARN_STRICT_PROTOTYPES = YES;
-			CLANG_WARN_SUSPICIOUS_MOVE = YES;
-			CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-			CLANG_WARN_UNREACHABLE_CODE = YES;
-			CLANG_WARN__DUPLICATE_METHOD_DECL = YES;
-			ENABLE_STRICT_OBJC_MSGSEND = YES;
-			IPHONEOS_DEPLOYMENT_TARGET = 17.0;
-			MTL_FAST_MATH = YES;
-			SDKROOT = iphoneos;
-			SWIFT_VERSION = 5.0;
-			COPY_PHASE_STRIP = NO;
-			DEBUG_INFORMATION_FORMAT = dwarf;
-			ENABLE_TESTABILITY = YES;
-			MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
-			ONLY_ACTIVE_ARCH = YES;
-			SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				CODE_SIGN_ENTITLEMENTS = ZoraFitness/ZoraFitness.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = ZT4SVFV262;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "ZoraFitness reads heart rate, HRV, sleep, and workout data to compute your daily Recovery and Strain scores.";
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				"INFOPLIST_KEY_UISupportedInterfaceOrientations_~iphone" = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.zorafitness.app;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
 		60B9ECF9BEA5D25E8A473E43 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-			ALWAYS_SEARCH_USER_PATHS = NO;
-			CLANG_ANALYZER_NONNULL = YES;
-			CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
-			CLANG_ENABLE_MODULES = YES;
-			CLANG_ENABLE_OBJC_ARC = YES;
-			CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
-			CLANG_WARN_BOOL_CONVERSION = YES;
-			CLANG_WARN_COMMA = YES;
-			CLANG_WARN_CONSTANT_CONVERSION = YES;
-			CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
-			CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-			CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-			CLANG_WARN_EMPTY_BODY = YES;
-			CLANG_WARN_ENUM_CONVERSION = YES;
-			CLANG_WARN_INFINITE_RECURSION = YES;
-			CLANG_WARN_INT_CONVERSION = YES;
-			CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
-			CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
-			CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
-			CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-			CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
-			CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
-			CLANG_WARN_STRICT_PROTOTYPES = YES;
-			CLANG_WARN_SUSPICIOUS_MOVE = YES;
-			CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-			CLANG_WARN_UNREACHABLE_CODE = YES;
-			CLANG_WARN__DUPLICATE_METHOD_DECL = YES;
-			ENABLE_STRICT_OBJC_MSGSEND = YES;
-			IPHONEOS_DEPLOYMENT_TARGET = 17.0;
-			MTL_FAST_MATH = YES;
-			SDKROOT = iphoneos;
-			SWIFT_VERSION = 5.0;
-			COPY_PHASE_STRIP = NO;
-			DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-			ENABLE_NS_ASSERTIONS = NO;
-			VALIDATE_PRODUCT = YES;
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_DECL = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_VERSION = 5.0;
+				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
-		};
-		27B8583EDFA6A4AB5038C37F /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = ZoraFitness/ZoraFitness.entitlements;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_NSHealthShareUsageDescription = "ZoraFitness reads heart rate, HRV, sleep, and workout data to compute your daily Recovery and Strain scores.";
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				"INFOPLIST_KEY_UISupportedInterfaceOrientations_~iphone" = UIInterfaceOrientationPortrait;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.zorafitness.app;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-			};
-			name = Debug;
 		};
 		619DFE98BAFF06EEBDC3E8F4 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = ZoraFitness/ZoraFitness.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = ZT4SVFV262;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHealthShareUsageDescription = "ZoraFitness reads heart rate, HRV, sleep, and workout data to compute your daily Recovery and Strain scores.";
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -442,24 +422,70 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.zorafitness.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
+		E9E50B5AB5060085C5FCB843 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_DECL = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		4FD56F8621BA1505B7398B39 /* Build configuration list for PBXProject "ZoraFitness" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				E9E50B5AB5060085C5FCB843 /* Debug */,
-				60B9ECF9BEA5D25E8A473E43 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		43AFA70BF10A7C0AE732DD48 /* Build configuration list for PBXNativeTarget "ZoraFitness" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -469,8 +495,16 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		4FD56F8621BA1505B7398B39 /* Build configuration list for PBXProject "ZoraFitness" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E9E50B5AB5060085C5FCB843 /* Debug */,
+				60B9ECF9BEA5D25E8A473E43 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 /* End XCConfigurationList section */
-
 	};
 	rootObject = 1CC0D529CB812D8CE21C8EFB /* Project object */;
 }
