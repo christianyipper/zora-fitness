@@ -8,6 +8,16 @@ struct DailyDataPoint: Identifiable {
     var id: Date { date }
 }
 
+enum ActivityLevel {
+    case achieved, partial, missed, noData, future
+}
+
+struct CalendarDay: Identifiable {
+    let date: Date
+    let level: ActivityLevel
+    var id: Date { date }
+}
+
 @Observable
 @MainActor
 final class AnalyticsViewModel {
@@ -17,6 +27,7 @@ final class AnalyticsViewModel {
     var hrvHistory:    [DailyDataPoint] = []
     var strainHistory: [DailyDataPoint] = []
     var sleepHistory:  [SleepSession]   = []
+    var calendarDays:  [CalendarDay]    = []
     var isLoading  = false
     var loadError: Error?
 
@@ -72,15 +83,17 @@ final class AnalyticsViewModel {
         loadError = nil
 
         do {
-            async let hrv    = healthKit.fetchHRVHistory(days: 30)
-            async let sleep  = healthKit.fetchSleepHistory(days: 30)
-            async let strain = buildStrainHistory(days: 30, healthKit: healthKit)
+            async let hrv      = healthKit.fetchHRVHistory(days: 30)
+            async let sleep    = healthKit.fetchSleepHistory(days: 30)
+            async let strain   = buildStrainHistory(days: 30, healthKit: healthKit)
+            async let activity = healthKit.fetchActivityHistory(days: 91)
 
-            let (hrvRaw, sleepRaw, strainRaw) = try await (hrv, sleep, strain)
+            let (hrvRaw, sleepRaw, strainRaw, activityRaw) = try await (hrv, sleep, strain, activity)
 
             hrvHistory    = deduplicated(hrvRaw.map { DailyDataPoint(date: $0.0, value: $0.1) })
             sleepHistory  = sleepRaw
             strainHistory = strainRaw
+            calendarDays  = buildCalendarDays(from: activityRaw)
         } catch {
             loadError = error
         }
@@ -115,6 +128,43 @@ final class AnalyticsViewModel {
             )).score
             return DailyDataPoint(date: date, value: score)
         }.sorted { $0.date < $1.date }
+    }
+
+    /// Builds a 91-day grid of CalendarDay values padded to start on Monday.
+    private func buildCalendarDays(
+        from history: [(date: Date, steps: Double, exerciseMinutes: Double)]
+    ) -> [CalendarDay] {
+        let cal   = Calendar.current
+        let today = cal.startOfDay(for: .now)
+
+        // Build a lookup by startOfDay.
+        let lookup = Dictionary(uniqueKeysWithValues: history.map {
+            (cal.startOfDay(for: $0.date), ($0.steps, $0.exerciseMinutes))
+        })
+
+        // Find the Monday on or before 91 days ago so the grid aligns week columns.
+        let rawStart = cal.date(byAdding: .day, value: -90, to: today)!
+        let weekday  = cal.component(.weekday, from: rawStart)  // 1=Sun … 7=Sat
+        let offsetToMonday = (weekday == 1) ? -6 : -(weekday - 2)
+        let gridStart = cal.date(byAdding: .day, value: offsetToMonday, to: rawStart)!
+
+        var days: [CalendarDay] = []
+        var cursor = gridStart
+        while cursor <= today {
+            let level: ActivityLevel
+            if cursor > today {
+                level = .future
+            } else if let (s, e) = lookup[cursor] {
+                if s >= 8000 || e >= 30      { level = .achieved }
+                else if s >= 4000 || e >= 15 { level = .partial  }
+                else                          { level = .missed   }
+            } else {
+                level = cursor <= today ? .missed : .noData
+            }
+            days.append(CalendarDay(date: cursor, level: level))
+            cursor = cal.date(byAdding: .day, value: 1, to: cursor)!
+        }
+        return days
     }
 
     /// Keeps the last reading per calendar day, eliminating bar stacking in Charts.

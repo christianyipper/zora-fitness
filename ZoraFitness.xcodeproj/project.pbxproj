@@ -22,14 +22,19 @@
 		A9E98B6C1F7F09F2329D0E59 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC5FCB13CD823001D04D416D /* ContentView.swift */; };
 		B8CE371BFFE64A0566637027 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73421D0B39274A64D7651BBC /* SettingsView.swift */; };
 		BEAFFF241AFFC5C28DF4CD6D /* RingProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 897D815C90647D993B5E4B96 /* RingProgressView.swift */; };
+		D7B4E1C9F2A0385E4B6D91F3 /* WaveCircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A3F2D8E6B0194F3A7E82C1 /* WaveCircleView.swift */; };
+		A8F3E2C1D5B0497F4A8C93D6 /* FlameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9E4F3D2A6C1508A5B9D74E7 /* FlameView.swift */; };
 		C28B73838040653D42F4ADA2 /* SettingsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70E7636D12567EB975915CEB /* SettingsStore.swift */; };
 		C7D5E8C9D0AB268B98A360EB /* MathExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6944DB4EEAA5A7C742B36BE4 /* MathExtensions.swift */; };
 		CC30C7EAA4BD0B672B9F9CB2 /* WorkoutSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = FED3A8E8EFE437169361A306 /* WorkoutSession.swift */; };
 		CEAC6D35C309C2A38E8CA3D2 /* SleepSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 337FE748000D5C60215701B1 /* SleepSession.swift */; };
+		E2F6A5D4C3B210987F8E95D3 /* OfficialGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E5F4C3B2A1098F6E7D84C2 /* OfficialGame.swift */; };
+		B5C9D8A7F6E5432C0B1A28F6 /* BCHLAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4B8C7F6E5D4321B9A0F17E5 /* BCHLAPIClient.swift */; };
 		D7D8A921C8B73926DD81B10E /* RecoveryCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58318B0A5FF31861BFF514C0 /* RecoveryCalculator.swift */; };
 		E63183F6447317BA32FC1EF4 /* AnalyticsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6CA1F9A36B1DE4ED4BA7EFE /* AnalyticsViewModel.swift */; };
 		F2BB8BFE5B3A3573AE60EFAF /* ChartCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1501DB631094DFD268F18948 /* ChartCard.swift */; };
 		FAC83F63A29DEA67B4335431 /* StrainCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3933CEAF56E466C677F53744 /* StrainCalculator.swift */; };
+		FABC000002000000FABC0002 /* FitnessAgeCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABC000001000000FABC0001 /* FitnessAgeCalculator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,16 +43,21 @@
 		155ABC339268F58E92F392C3 /* DashboardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewModel.swift; sourceTree = "<group>"; };
 		178F2938DBD9C965FC986505 /* WorkoutDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutDetailView.swift; sourceTree = "<group>"; };
 		337FE748000D5C60215701B1 /* SleepSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepSession.swift; sourceTree = "<group>"; };
+		D1E5F4C3B2A1098F6E7D84C2 /* OfficialGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfficialGame.swift; sourceTree = "<group>"; };
+		A4B8C7F6E5D4321B9A0F17E5 /* BCHLAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BCHLAPIClient.swift; sourceTree = "<group>"; };
 		3933CEAF56E466C677F53744 /* StrainCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrainCalculator.swift; sourceTree = "<group>"; };
 		565C58E80020FE599810631B /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
 		58318B0A5FF31861BFF514C0 /* RecoveryCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecoveryCalculator.swift; sourceTree = "<group>"; };
 		6944DB4EEAA5A7C742B36BE4 /* MathExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MathExtensions.swift; sourceTree = "<group>"; };
+		FABC000001000000FABC0001 /* FitnessAgeCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FitnessAgeCalculator.swift; sourceTree = "<group>"; };
 		70E7636D12567EB975915CEB /* SettingsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsStore.swift; sourceTree = "<group>"; };
 		73421D0B39274A64D7651BBC /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		73F741D1F022B5C5415FBAB1 /* WorkoutHistoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutHistoryViewModel.swift; sourceTree = "<group>"; };
 		8208318ECD8AA1CB2D1E9C53 /* ZoraFitness.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZoraFitness.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8883BD27880984208F3FECB2 /* AppTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTheme.swift; sourceTree = "<group>"; };
 		897D815C90647D993B5E4B96 /* RingProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RingProgressView.swift; sourceTree = "<group>"; };
+		C5A3F2D8E6B0194F3A7E82C1 /* WaveCircleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaveCircleView.swift; sourceTree = "<group>"; };
+		B9E4F3D2A6C1508A5B9D74E7 /* FlameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlameView.swift; sourceTree = "<group>"; };
 		8FCE853C16700751CDE979EA /* ZoraFitnessApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZoraFitnessApp.swift; sourceTree = "<group>"; };
 		B32E62B34B3DA81116E01A73 /* HealthKitManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitManager.swift; sourceTree = "<group>"; };
 		B6CD4A4DA57FF16539EEE9C3 /* Charts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Charts.framework; path = System/Library/Frameworks/Charts.framework; sourceTree = SDKROOT; };
@@ -96,6 +106,8 @@
 			children = (
 				897D815C90647D993B5E4B96 /* RingProgressView.swift */,
 				1501DB631094DFD268F18948 /* ChartCard.swift */,
+				C5A3F2D8E6B0194F3A7E82C1 /* WaveCircleView.swift */,
+				B9E4F3D2A6C1508A5B9D74E7 /* FlameView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -114,6 +126,7 @@
 				0D6CC0CE12AC2D1A4E690909 /* DailyMetrics.swift */,
 				FED3A8E8EFE437169361A306 /* WorkoutSession.swift */,
 				337FE748000D5C60215701B1 /* SleepSession.swift */,
+				D1E5F4C3B2A1098F6E7D84C2 /* OfficialGame.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -136,6 +149,14 @@
 			path = App;
 			sourceTree = "<group>";
 		};
+		F3A7B6E5D4C3210A8F9E06E4 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				A4B8C7F6E5D4321B9A0F17E5 /* BCHLAPIClient.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
 		9D2B3449A5E2B106415024D6 /* Core */ = {
 			isa = PBXGroup;
 			children = (
@@ -143,6 +164,7 @@
 				24DE3A77F9120EE700043DAF /* Models */,
 				B674414792257C17DAA5E1F3 /* Algorithms */,
 				B1D9B9DC30E6AA87A1A84E83 /* Settings */,
+				F3A7B6E5D4C3210A8F9E06E4 /* Network */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -178,6 +200,7 @@
 				58318B0A5FF31861BFF514C0 /* RecoveryCalculator.swift */,
 				3933CEAF56E466C677F53744 /* StrainCalculator.swift */,
 				6944DB4EEAA5A7C742B36BE4 /* MathExtensions.swift */,
+				FABC000001000000FABC0001 /* FitnessAgeCalculator.swift */,
 			);
 			path = Algorithms;
 			sourceTree = "<group>";
@@ -312,9 +335,12 @@
 				22F223562D3789053B82D4BD /* DailyMetrics.swift in Sources */,
 				CC30C7EAA4BD0B672B9F9CB2 /* WorkoutSession.swift in Sources */,
 				CEAC6D35C309C2A38E8CA3D2 /* SleepSession.swift in Sources */,
+				E2F6A5D4C3B210987F8E95D3 /* OfficialGame.swift in Sources */,
+				B5C9D8A7F6E5432C0B1A28F6 /* BCHLAPIClient.swift in Sources */,
 				D7D8A921C8B73926DD81B10E /* RecoveryCalculator.swift in Sources */,
 				FAC83F63A29DEA67B4335431 /* StrainCalculator.swift in Sources */,
 				C7D5E8C9D0AB268B98A360EB /* MathExtensions.swift in Sources */,
+				FABC000002000000FABC0002 /* FitnessAgeCalculator.swift in Sources */,
 				C28B73838040653D42F4ADA2 /* SettingsStore.swift in Sources */,
 				A530E64E00B6EE25CED4381D /* DashboardView.swift in Sources */,
 				0DE423C119072D16EC2D8568 /* DashboardViewModel.swift in Sources */,
@@ -326,6 +352,8 @@
 				B8CE371BFFE64A0566637027 /* SettingsView.swift in Sources */,
 				BEAFFF241AFFC5C28DF4CD6D /* RingProgressView.swift in Sources */,
 				F2BB8BFE5B3A3573AE60EFAF /* ChartCard.swift in Sources */,
+				D7B4E1C9F2A0385E4B6D91F3 /* WaveCircleView.swift in Sources */,
+				A8F3E2C1D5B0497F4A8C93D6 /* FlameView.swift in Sources */,
 				128E3394BCCCEF6D066CF701 /* AppTheme.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

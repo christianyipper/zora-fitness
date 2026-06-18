@@ -14,6 +14,11 @@ final class SettingsStore {
         didSet { UserDefaults.standard.set(age, forKey: Keys.age) }
     }
 
+    /// Full name as it appears in the BCHL officials database. Used to match game records.
+    var officialName: String = "" {
+        didSet { UserDefaults.standard.set(officialName, forKey: Keys.officialName) }
+    }
+
     /// 220 − age. Drives HealthKitManager.maxHeartRate and strain zone calculation.
     var computedMaxHR: Double { Double(220 - age) }
 
@@ -38,12 +43,15 @@ final class SettingsStore {
 
         let storedSleep = UserDefaults.standard.double(forKey: Keys.sleepTarget)
         if storedSleep >= 4 && storedSleep <= 12 { sleepTargetHours = storedSleep }
+
+        officialName = UserDefaults.standard.string(forKey: Keys.officialName) ?? ""
     }
 
     // MARK: - Keys
 
     private enum Keys {
-        static let age         = "zora.userAge"
-        static let sleepTarget = "zora.sleepTargetHours"
+        static let age          = "zora.userAge"
+        static let sleepTarget  = "zora.sleepTargetHours"
+        static let officialName = "zora.officialName"
     }
 }

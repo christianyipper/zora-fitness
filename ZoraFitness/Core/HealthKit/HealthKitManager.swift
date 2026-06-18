@@ -227,6 +227,53 @@ final class HealthKitManager {
         )
     }
 
+    // MARK: - Activity History (batch, for streaks + calendar)
+
+    /// Returns per-day steps and exercise minutes for the last N days using
+    /// HKStatisticsCollectionQuery (one query per metric, not one per day).
+    func fetchActivityHistory(days: Int) async throws -> [(date: Date, steps: Double, exerciseMinutes: Double)] {
+        let cal = Calendar.current
+        let end   = cal.startOfDay(for: .now)
+        let start = cal.date(byAdding: .day, value: -days, to: end)!
+
+        async let stepsMap    = batchDailyStats(for: .stepCount,        unit: .count(),  from: start, to: end)
+        async let exerciseMap = batchDailyStats(for: .appleExerciseTime, unit: .minute(), from: start, to: end)
+
+        let (s, e) = try await (stepsMap, exerciseMap)
+        let allDates = Set(s.keys).union(Set(e.keys)).sorted()
+        return allDates.map { date in
+            (date: date, steps: s[date] ?? 0, exerciseMinutes: e[date] ?? 0)
+        }
+    }
+
+    private func batchDailyStats(for id: HKQuantityTypeIdentifier, unit: HKUnit, from start: Date, to end: Date) async throws -> [Date: Double] {
+        let type      = HKQuantityType(id)
+        let interval  = DateComponents(day: 1)
+        let anchor    = Calendar.current.startOfDay(for: end)
+        let predicate = HKQuery.predicateForSamples(withStart: start, end: end, options: .strictStartDate)
+
+        return try await withCheckedThrowingContinuation { continuation in
+            let query = HKStatisticsCollectionQuery(
+                quantityType: type,
+                quantitySamplePredicate: predicate,
+                options: .cumulativeSum,
+                anchorDate: anchor,
+                intervalComponents: interval
+            )
+            query.initialResultsHandler = { _, collection, error in
+                if let error { continuation.resume(throwing: error); return }
+                var result: [Date: Double] = [:]
+                collection?.enumerateStatistics(from: start, to: end) { stats, _ in
+                    if let sum = stats.sumQuantity() {
+                        result[stats.startDate] = sum.doubleValue(for: unit)
+                    }
+                }
+                continuation.resume(returning: result)
+            }
+            self.store.execute(query)
+        }
+    }
+
     // MARK: - Private Helpers
 
     private func fetchDailySum(for id: HKQuantityTypeIdentifier, unit: HKUnit, on date: Date) async throws -> Double {

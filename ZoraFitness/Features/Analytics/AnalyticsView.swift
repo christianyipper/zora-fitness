@@ -22,6 +22,9 @@ struct AnalyticsView: View {
                     ScrollView(showsIndicators: false) {
                         VStack(spacing: AppTheme.sectionGap) {
                             periodLabel
+                            if !viewModel.calendarDays.isEmpty {
+                                calendarCard
+                            }
                             hrvCard
                             strainCard
                             sleepCard
@@ -38,6 +41,84 @@ struct AnalyticsView: View {
             .toolbarColorScheme(.dark, for: .navigationBar)
         }
         .task { await viewModel.load(using: healthKit) }
+    }
+
+    // MARK: - Activity Calendar
+
+    private var calendarCard: some View {
+        VStack(alignment: .leading, spacing: 12) {
+            HStack {
+                Text("ACTIVITY CALENDAR · 13 WEEKS")
+                    .font(AppTheme.label)
+                    .foregroundStyle(AppTheme.secondaryText)
+                    .tracking(1.4)
+                Spacer()
+                // Legend
+                HStack(spacing: 8) {
+                    legendChip(color: AppTheme.strainBlue,              label: "Goal")
+                    legendChip(color: AppTheme.strainBlue.opacity(0.4), label: "Partial")
+                    legendChip(color: Color(white: 0.18),               label: "Rest")
+                }
+            }
+
+            calendarGrid
+        }
+        .padding(AppTheme.cardPadding)
+        .background(AppTheme.cardBackground, in: RoundedRectangle(cornerRadius: AppTheme.cardRadius))
+    }
+
+    private var calendarGrid: some View {
+        // Days are ordered Mon→Sun per column (week).
+        // Slice into 7-row columns.
+        let days = viewModel.calendarDays
+        let numCols = (days.count + 6) / 7   // ceil(days / 7)
+        let columns = Array(repeating: GridItem(.fixed(14), spacing: 4), count: numCols)
+
+        return HStack(alignment: .top, spacing: 6) {
+            // Day-of-week labels
+            VStack(alignment: .trailing, spacing: 4) {
+                ForEach(["M", "", "W", "", "F", "", "S"], id: \.self) { label in
+                    Text(label)
+                        .font(.system(size: 9))
+                        .foregroundStyle(AppTheme.tertiaryText)
+                        .frame(width: 10, height: 14)
+                }
+            }
+
+            // Grid: column = week, row = day of week (Mon=0…Sun=6)
+            ScrollView(.horizontal, showsIndicators: false) {
+                LazyVGrid(columns: columns, spacing: 4) {
+                    ForEach(days) { day in
+                        calendarCell(day)
+                    }
+                }
+            }
+        }
+    }
+
+    private func calendarCell(_ day: CalendarDay) -> some View {
+        let color: Color = {
+            switch day.level {
+            case .achieved: return AppTheme.strainBlue
+            case .partial:  return AppTheme.strainBlue.opacity(0.4)
+            case .missed:   return Color(white: 0.15)
+            case .noData, .future: return Color(white: 0.08)
+            }
+        }()
+        return RoundedRectangle(cornerRadius: 3)
+            .fill(color)
+            .frame(width: 14, height: 14)
+    }
+
+    private func legendChip(color: Color, label: String) -> some View {
+        HStack(spacing: 4) {
+            RoundedRectangle(cornerRadius: 2)
+                .fill(color)
+                .frame(width: 10, height: 10)
+            Text(label)
+                .font(AppTheme.micro)
+                .foregroundStyle(AppTheme.tertiaryText)
+        }
     }
 
     // MARK: - Period Label

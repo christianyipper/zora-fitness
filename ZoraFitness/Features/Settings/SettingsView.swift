@@ -43,6 +43,17 @@ struct SettingsView: View {
                 .foregroundStyle(AppTheme.primaryText)
             }
 
+            // Official name for BCHL game matching
+            HStack {
+                Text("Official Name")
+                    .foregroundStyle(AppTheme.primaryText)
+                Spacer()
+                TextField("Your name in BCHL system", text: settings.officialName)
+                    .multilineTextAlignment(.trailing)
+                    .foregroundStyle(AppTheme.primaryText)
+                    .autocorrectionDisabled()
+            }
+
             // Derived max HR (read-only)
             HStack {
                 VStack(alignment: .leading, spacing: 3) {
