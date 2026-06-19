@@ -5,6 +5,7 @@ struct AnalyticsView: View {
     @Environment(HealthKitManager.self) private var healthKit
     @Environment(SettingsStore.self)    private var settings
     @State private var viewModel = AnalyticsViewModel()
+    @State private var showProfile = false
 
     var body: some View {
         NavigationStack {
@@ -39,69 +40,128 @@ struct AnalyticsView: View {
             .navigationTitle("Analytics")
             .navigationBarTitleDisplayMode(.large)
             .toolbarColorScheme(.dark, for: .navigationBar)
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    AvatarButton(initials: initialsFromName(settings.officialName.isEmpty ? "You" : settings.officialName)) {
+                        showProfile = true
+                    }
+                }
+            }
+            .sheet(isPresented: $showProfile) { ProfileView() }
         }
         .task { await viewModel.load(using: healthKit) }
     }
 
     // MARK: - Activity Calendar
 
+    private struct MonthGroup: Identifiable {
+        let monthName: String
+        let monthKey: String
+        let weeks: [[CalendarDay]]
+        var id: String { monthKey }
+    }
+
+    private var monthGroups: [MonthGroup] {
+        let days = viewModel.calendarDays
+        guard !days.isEmpty else { return [] }
+        let cal = Calendar.current
+        let keyFmt = DateFormatter()
+        keyFmt.dateFormat = "yyyy-MM"
+        let labelFmt = DateFormatter()
+        labelFmt.dateFormat = "MMM"
+
+        var weeks: [[CalendarDay]] = []
+        var i = 0
+        while i < days.count {
+            weeks.append(Array(days[i..<min(i + 7, days.count)]))
+            i += 7
+        }
+
+        var groups: [MonthGroup] = []
+        var currentKey: String? = nil
+        var currentLabel = ""
+        var currentWeeks: [[CalendarDay]] = []
+
+        for week in weeks {
+            guard let first = week.first else { continue }
+            let monthStart = cal.date(from: cal.dateComponents([.year, .month], from: first.date))!
+            let key = keyFmt.string(from: monthStart)
+            if key != currentKey {
+                if !currentWeeks.isEmpty, let k = currentKey {
+                    groups.append(MonthGroup(monthName: currentLabel, monthKey: k, weeks: currentWeeks))
+                }
+                currentKey = key
+                currentLabel = labelFmt.string(from: monthStart).uppercased()
+                currentWeeks = [week]
+            } else {
+                currentWeeks.append(week)
+            }
+        }
+        if !currentWeeks.isEmpty, let k = currentKey {
+            groups.append(MonthGroup(monthName: currentLabel, monthKey: k, weeks: currentWeeks))
+        }
+        return groups
+    }
+
     private var calendarCard: some View {
         VStack(alignment: .leading, spacing: 12) {
             HStack {
-                Text("ACTIVITY CALENDAR · 13 WEEKS")
+                Text("ACTIVITY · 14 WEEKS")
                     .font(AppTheme.label)
                     .foregroundStyle(AppTheme.secondaryText)
                     .tracking(1.4)
                 Spacer()
-                // Legend
                 HStack(spacing: 8) {
                     legendChip(color: AppTheme.strainBlue,              label: "Goal")
                     legendChip(color: AppTheme.strainBlue.opacity(0.4), label: "Partial")
-                    legendChip(color: Color(white: 0.18),               label: "Rest")
                 }
             }
 
-            calendarGrid
+            ScrollView(.horizontal, showsIndicators: false) {
+                HStack(alignment: .top, spacing: 0) {
+                    VStack(alignment: .trailing, spacing: 4) {
+                        ForEach(["M", "", "W", "", "F", "", "S"], id: \.self) { lbl in
+                            Text(lbl)
+                                .font(.system(size: 9))
+                                .foregroundStyle(AppTheme.tertiaryText)
+                                .frame(width: 10, height: 14)
+                        }
+                        Color.clear.frame(height: 16)
+                    }
+                    .padding(.trailing, 6)
+
+                    HStack(alignment: .top, spacing: 4) {
+                        ForEach(monthGroups) { group in
+                            VStack(alignment: .leading, spacing: 6) {
+                                HStack(alignment: .top, spacing: 4) {
+                                    ForEach(group.weeks.indices, id: \.self) { wi in
+                                        VStack(spacing: 4) {
+                                            ForEach(group.weeks[wi]) { day in
+                                                calendarCell(day)
+                                            }
+                                        }
+                                    }
+                                }
+                                Text(group.monthName)
+                                    .font(AppTheme.micro)
+                                    .foregroundStyle(AppTheme.tertiaryText)
+                                    .tracking(1.0)
+                            }
+                        }
+                    }
+                }
+            }
         }
         .padding(AppTheme.cardPadding)
         .background(AppTheme.cardBackground, in: RoundedRectangle(cornerRadius: AppTheme.cardRadius))
     }
 
-    private var calendarGrid: some View {
-        // Days are ordered Mon→Sun per column (week).
-        // Slice into 7-row columns.
-        let days = viewModel.calendarDays
-        let numCols = (days.count + 6) / 7   // ceil(days / 7)
-        let columns = Array(repeating: GridItem(.fixed(14), spacing: 4), count: numCols)
-
-        return HStack(alignment: .top, spacing: 6) {
-            // Day-of-week labels
-            VStack(alignment: .trailing, spacing: 4) {
-                ForEach(["M", "", "W", "", "F", "", "S"], id: \.self) { label in
-                    Text(label)
-                        .font(.system(size: 9))
-                        .foregroundStyle(AppTheme.tertiaryText)
-                        .frame(width: 10, height: 14)
-                }
-            }
-
-            // Grid: column = week, row = day of week (Mon=0…Sun=6)
-            ScrollView(.horizontal, showsIndicators: false) {
-                LazyVGrid(columns: columns, spacing: 4) {
-                    ForEach(days) { day in
-                        calendarCell(day)
-                    }
-                }
-            }
-        }
-    }
-
     private func calendarCell(_ day: CalendarDay) -> some View {
         let color: Color = {
             switch day.level {
-            case .achieved: return AppTheme.strainBlue
-            case .partial:  return AppTheme.strainBlue.opacity(0.4)
-            case .missed:   return Color(white: 0.15)
+            case .achieved:        return AppTheme.strainBlue
+            case .partial:         return AppTheme.strainBlue.opacity(0.4)
+            case .missed:          return Color(white: 0.15)
             case .noData, .future: return Color(white: 0.08)
             }
         }()

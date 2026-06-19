@@ -35,6 +35,10 @@
 		F2BB8BFE5B3A3573AE60EFAF /* ChartCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1501DB631094DFD268F18948 /* ChartCard.swift */; };
 		FAC83F63A29DEA67B4335431 /* StrainCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3933CEAF56E466C677F53744 /* StrainCalculator.swift */; };
 		FABC000002000000FABC0002 /* FitnessAgeCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABC000001000000FABC0001 /* FitnessAgeCalculator.swift */; };
+		AA1234567890ABCDEF123402 /* CrewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1234567890ABCDEF123401 /* CrewView.swift */; };
+		READ000001000000READ0002 /* ReadinessDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = READ000001000000READ0001 /* ReadinessDetailView.swift */; };
+		PROF000001000000PROF0002 /* AvatarButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = PROF000001000000PROF0001 /* AvatarButton.swift */; };
+		PROF000002000000PROF0002 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = PROF000002000000PROF0001 /* ProfileView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -67,6 +71,10 @@
 		F6CA1F9A36B1DE4ED4BA7EFE /* AnalyticsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsViewModel.swift; sourceTree = "<group>"; };
 		FC5FCB13CD823001D04D416D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		FED3A8E8EFE437169361A306 /* WorkoutSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutSession.swift; sourceTree = "<group>"; };
+		AA1234567890ABCDEF123401 /* CrewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrewView.swift; sourceTree = "<group>"; };
+		READ000001000000READ0001 /* ReadinessDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadinessDetailView.swift; sourceTree = "<group>"; };
+		PROF000001000000PROF0001 /* AvatarButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarButton.swift; sourceTree = "<group>"; };
+		PROF000002000000PROF0001 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,11 +94,29 @@
 			isa = PBXGroup;
 			children = (
 				470E3916E7C41924C7F37B94 /* Dashboard */,
+				AA1234567890ABCDEF123403 /* Crew */,
+				PROF000003000000PROF0001 /* Profile */,
 				D2036101800AB357A9C255FB /* Workouts */,
 				B77D57E1122A4F67E1F101F4 /* Analytics */,
 				0E29EA7E0AE9734425CC4BB3 /* Settings */,
 			);
 			path = Features;
+			sourceTree = "<group>";
+		};
+		PROF000003000000PROF0001 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				PROF000002000000PROF0001 /* ProfileView.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		AA1234567890ABCDEF123403 /* Crew */ = {
+			isa = PBXGroup;
+			children = (
+				AA1234567890ABCDEF123401 /* CrewView.swift */,
+			);
+			path = Crew;
 			sourceTree = "<group>";
 		};
 		0E29EA7E0AE9734425CC4BB3 /* Settings */ = {
@@ -108,6 +134,7 @@
 				1501DB631094DFD268F18948 /* ChartCard.swift */,
 				C5A3F2D8E6B0194F3A7E82C1 /* WaveCircleView.swift */,
 				B9E4F3D2A6C1508A5B9D74E7 /* FlameView.swift */,
+				PROF000001000000PROF0001 /* AvatarButton.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -136,6 +163,7 @@
 			children = (
 				565C58E80020FE599810631B /* DashboardView.swift */,
 				155ABC339268F58E92F392C3 /* DashboardViewModel.swift */,
+				READ000001000000READ0001 /* ReadinessDetailView.swift */,
 			);
 			path = Dashboard;
 			sourceTree = "<group>";
@@ -341,6 +369,10 @@
 				FAC83F63A29DEA67B4335431 /* StrainCalculator.swift in Sources */,
 				C7D5E8C9D0AB268B98A360EB /* MathExtensions.swift in Sources */,
 				FABC000002000000FABC0002 /* FitnessAgeCalculator.swift in Sources */,
+				AA1234567890ABCDEF123402 /* CrewView.swift in Sources */,
+				READ000001000000READ0002 /* ReadinessDetailView.swift in Sources */,
+				PROF000001000000PROF0002 /* AvatarButton.swift in Sources */,
+				PROF000002000000PROF0002 /* ProfileView.swift in Sources */,
 				C28B73838040653D42F4ADA2 /* SettingsStore.swift in Sources */,
 				A530E64E00B6EE25CED4381D /* DashboardView.swift in Sources */,
 				0DE423C119072D16EC2D8568 /* DashboardViewModel.swift in Sources */,

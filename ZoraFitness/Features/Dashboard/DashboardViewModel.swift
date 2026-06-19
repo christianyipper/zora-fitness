@@ -19,8 +19,13 @@ final class DashboardViewModel {
     var currentStreak: Int = 0
     var activeDaysThisMonth: Int = 0
 
+    var totalCrewStars: Int = 8  // mock — replace with crew backend query
+
     var recentGame: OfficialGame? = nil
     var totalGamesWorked: Int = 0
+    var gameDates: Set<Date> = []
+    var mostRecentWorkout: WorkoutSession? = nil
+    var calendarDays: [CalendarDay] = []
 
     // MARK: - Load
 
@@ -30,74 +35,86 @@ final class DashboardViewModel {
         defer { isLoading = false }
         loadError = nil
 
-        do {
-            let cal = Calendar.current
-            let today = Date.now
-            let yesterday = cal.date(byAdding: .day, value: -1, to: today)!
-            let startOfToday = cal.startOfDay(for: today)
-            let startOfYesterday = cal.startOfDay(for: yesterday)
+        let cal = Calendar.current
+        let today = Date.now
+        let yesterday = cal.date(byAdding: .day, value: -1, to: today)!
+        let startOfToday = cal.startOfDay(for: today)
+        let startOfYesterday = cal.startOfDay(for: yesterday)
 
-            // Phase 1: All raw HealthKit fetches run concurrently.
-            async let todayMetrics     = healthKit.fetchDailyMetrics(for: today)
-            async let yesterdayMetrics = healthKit.fetchDailyMetrics(for: yesterday)
-            async let hrvHistory       = healthKit.fetchHRVHistory(days: 30)
-            async let rhrHistory       = healthKit.fetchRHRHistory(days: 30)
-            async let rawToday         = healthKit.fetchWorkouts(from: startOfToday)
-            async let rawYesterday     = healthKit.fetchWorkouts(from: startOfYesterday, to: startOfToday)
-            async let activityHistory  = healthKit.fetchActivityHistory(days: 90)
+        // Phase 1: All raw HealthKit fetches run concurrently.
+        // try? per-fetch so one failed query doesn't wipe all state.
+        async let todayMetrics     = healthKit.fetchDailyMetrics(for: today)
+        async let yesterdayMetrics = healthKit.fetchDailyMetrics(for: yesterday)
+        async let hrvHistory       = healthKit.fetchHRVHistory(days: 30)
+        async let rhrHistory       = healthKit.fetchRHRHistory(days: 30)
+        async let rawToday         = healthKit.fetchWorkouts(from: startOfToday)
+        async let rawYesterday     = healthKit.fetchWorkouts(from: startOfYesterday, to: startOfToday)
+        async let activityHistory  = healthKit.fetchActivityHistory(days: 120)
 
-            let m        = try await todayMetrics
-            let prevM    = try await yesterdayMetrics
-            let hrv      = try await hrvHistory
-            let rhr      = try await rhrHistory
-            let rawT     = try await rawToday
-            let rawY     = try await rawYesterday
-            let activity = try await activityHistory
+        let m        = (try? await todayMetrics)     ?? .empty
+        let prevM    = (try? await yesterdayMetrics) ?? .empty
+        let hrv      = (try? await hrvHistory)       ?? []
+        let rhr      = (try? await rhrHistory)       ?? []
+        let rawT     = (try? await rawToday)         ?? []
+        let rawY     = (try? await rawYesterday)     ?? []
+        let activity = (try? await activityHistory)  ?? []
 
-            dailyMetrics = m
+        // Fall back to the last recorded value when today's reading isn't available yet
+        // (e.g., early morning before Apple Watch has synced overnight data).
+        let effectiveHRV   = m.hrv ?? hrv.last?.1
+        let effectiveRHR   = m.restingHeartRate ?? rhr.last?.1
+        let effectiveSleep = m.sleep ?? prevM.sleep
 
-            // Fitness age from 30-day HRV baseline.
-            let hrvAvg = hrv.map(\.1).mean
-            fitnessAge = FitnessAgeCalculator.calculate(hrv30DayAvg: hrvAvg)
+        dailyMetrics = DailyMetrics(
+            date: m.date,
+            hrv: effectiveHRV,
+            restingHeartRate: effectiveRHR,
+            activeCalories: m.activeCalories,
+            steps: m.steps,
+            exerciseMinutes: m.exerciseMinutes,
+            sleep: effectiveSleep
+        )
 
-            // Streak and monthly active-day count.
-            (currentStreak, activeDaysThisMonth) = computeStreakAndMonth(from: activity)
+        // Fitness age from 30-day HRV baseline.
+        let hrvAvg = hrv.map(\.1).mean
+        fitnessAge = FitnessAgeCalculator.calculate(hrv30DayAvg: hrvAvg)
 
-            // Phase 2: Enrich workouts with HR zone data.
-            // Run today and yesterday enrichment concurrently via task groups.
-            async let todaySessions     = enrichWorkouts(rawT, healthKit: healthKit)
-            async let yesterdaySessions = enrichWorkouts(rawY, healthKit: healthKit)
+        // Streak, monthly active-day count, and 16-week calendar grid.
+        (currentStreak, activeDaysThisMonth) = computeStreakAndMonth(from: activity)
+        calendarDays = buildCalendarDays(from: activity)
 
-            workouts = try await todaySessions
-            let prevWorkouts = try await yesterdaySessions
+        // Phase 2: Enrich workouts with HR zone data.
+        // Run today and yesterday enrichment concurrently via task groups.
+        async let todaySessions     = enrichWorkouts(rawT, healthKit: healthKit)
+        async let yesterdaySessions = enrichWorkouts(rawY, healthKit: healthKit)
 
-            // Phase 3: Calculate scores.
-            let prevStrain = StrainCalculator.calculate(input: StrainInput(
-                workoutSessions: prevWorkouts,
-                activeCalories: prevM.activeCalories,
-                steps: prevM.steps,
-                maxHeartRate: healthKit.maxHeartRate
-            )).score
+        workouts = (try? await todaySessions)     ?? []
+        let prevWorkouts = (try? await yesterdaySessions) ?? []
+        mostRecentWorkout = workouts.first ?? prevWorkouts.first
 
-            recoveryScore = RecoveryCalculator.calculate(input: RecoveryInput(
-                todayHRV: m.hrv,
-                todayRHR: m.restingHeartRate,
-                hrvHistory: hrv.map(\.1),
-                rhrHistory: rhr.map(\.1),
-                lastNightSleep: m.sleep,
-                previousDayStrain: prevStrain
-            ))
+        // Phase 3: Calculate scores.
+        let prevStrain = StrainCalculator.calculate(input: StrainInput(
+            workoutSessions: prevWorkouts,
+            activeCalories: prevM.activeCalories,
+            steps: prevM.steps,
+            maxHeartRate: healthKit.maxHeartRate
+        )).score
 
-            strainScore = StrainCalculator.calculate(input: StrainInput(
-                workoutSessions: workouts,
-                activeCalories: m.activeCalories,
-                steps: m.steps,
-                maxHeartRate: healthKit.maxHeartRate
-            ))
+        recoveryScore = RecoveryCalculator.calculate(input: RecoveryInput(
+            todayHRV: effectiveHRV,
+            todayRHR: effectiveRHR,
+            hrvHistory: hrv.map(\.1),
+            rhrHistory: rhr.map(\.1),
+            lastNightSleep: effectiveSleep,
+            previousDayStrain: prevStrain
+        ))
 
-        } catch {
-            loadError = error
-        }
+        strainScore = StrainCalculator.calculate(input: StrainInput(
+            workoutSessions: workouts,
+            activeCalories: m.activeCalories,
+            steps: m.steps,
+            maxHeartRate: healthKit.maxHeartRate
+        ))
 
         await loadOfficialData(name: officialName)
     }
@@ -109,8 +126,11 @@ final class DashboardViewModel {
         let client = BCHLAPIClient()
         async let game  = try? client.fetchRecentGame(for: name)
         async let total = try? client.fetchTotalGamesWorked(for: name)
+        async let dates = try? client.fetchGameDates(for: name)
         recentGame       = await game ?? recentGame
         totalGamesWorked = await total ?? totalGamesWorked
+        let cal = Calendar.current
+        gameDates = Set((await dates ?? []).map { cal.startOfDay(for: $0) })
     }
 
     private func computeStreakAndMonth(
@@ -146,6 +166,39 @@ final class DashboardViewModel {
         let activeDaysThisMonth = monthDays.filter { isActive($0.steps, $0.exerciseMinutes) }.count
 
         return (streak, activeDaysThisMonth)
+    }
+
+    private func buildCalendarDays(
+        from history: [(date: Date, steps: Double, exerciseMinutes: Double)]
+    ) -> [CalendarDay] {
+        let cal   = Calendar.current
+        let today = cal.startOfDay(for: .now)
+
+        let lookup = Dictionary(uniqueKeysWithValues: history.map {
+            (cal.startOfDay(for: $0.date), ($0.steps, $0.exerciseMinutes))
+        })
+
+        // 14 weeks = 98 days; pad the start back to the nearest Monday.
+        let rawStart = cal.date(byAdding: .day, value: -97, to: today)!
+        let weekday  = cal.component(.weekday, from: rawStart)
+        let offsetToMonday = (weekday == 1) ? -6 : -(weekday - 2)
+        let gridStart = cal.date(byAdding: .day, value: offsetToMonday, to: rawStart)!
+
+        var days: [CalendarDay] = []
+        var cursor = gridStart
+        while cursor <= today {
+            let level: ActivityLevel
+            if let (s, e) = lookup[cursor] {
+                if s >= 8000 || e >= 30      { level = .achieved }
+                else if s >= 4000 || e >= 15 { level = .partial  }
+                else                          { level = .missed   }
+            } else {
+                level = .missed
+            }
+            days.append(CalendarDay(date: cursor, level: level))
+            cursor = cal.date(byAdding: .day, value: 1, to: cursor)!
+        }
+        return days
     }
 
     private func enrichWorkouts(_ raw: [HKWorkout], healthKit: HealthKitManager) async throws -> [WorkoutSession] {

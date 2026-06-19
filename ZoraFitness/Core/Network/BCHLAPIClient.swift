@@ -35,6 +35,30 @@ struct BCHLAPIClient {
         return rows.first.map(OfficialGame.init(row:))
     }
 
+    func fetchGameDates(for name: String) async throws -> [Date] {
+        let sql = """
+        SELECT DISTINCT g.date
+        FROM "Game" g
+        JOIN "GameOfficial" go ON go."gameId" = g.id
+        JOIN "Official" o ON o.id = go."officialId"
+        WHERE o.name ILIKE $1
+        ORDER BY g.date DESC
+        """
+        let rows = try await query(sql: sql, params: [name], as: DateRow.self)
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        return rows.compactMap { formatter.date(from: $0.date) }
+    }
+
+    func fetchOfficialNumbers(for name: String) async throws -> (rNum: String?, lNum: String?) {
+        let sql = """
+        SELECT r_num, l_num FROM "Official" WHERE name ILIKE $1 LIMIT 1
+        """
+        let rows = try await query(sql: sql, params: [name], as: OfficialNumbersRow.self)
+        guard let row = rows.first else { return (nil, nil) }
+        return (row.r_num, row.l_num)
+    }
+
     func fetchTotalGamesWorked(for name: String) async throws -> Int {
         let sql = """
         SELECT COUNT(DISTINCT g.id) AS total
@@ -65,8 +89,17 @@ struct BCHLAPIClient {
         let rows: [T]
     }
 
+    private struct OfficialNumbersRow: Decodable {
+        let r_num: String?
+        let l_num: String?
+    }
+
     private struct TotalRow: Decodable {
         let total: String
+    }
+
+    private struct DateRow: Decodable {
+        let date: String
     }
 
     // fileprivate so OfficialGame extension below can reference it

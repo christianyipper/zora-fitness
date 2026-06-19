@@ -3,6 +3,7 @@ import SwiftUI
 struct SettingsView: View {
     @Environment(SettingsStore.self)    private var settings
     @Environment(HealthKitManager.self) private var healthKit
+    @State private var showProfile = false
 
     var body: some View {
         // @Bindable lets us derive $settings.age / $settings.sleepTargetHours
@@ -21,6 +22,14 @@ struct SettingsView: View {
             .navigationTitle("Settings")
             .navigationBarTitleDisplayMode(.large)
             .toolbarColorScheme(.dark, for: .navigationBar)
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    AvatarButton(initials: initialsFromName(settings.officialName.isEmpty ? "You" : settings.officialName)) {
+                        showProfile = true
+                    }
+                }
+            }
+            .sheet(isPresented: $showProfile) { ProfileView() }
         }
     }
 

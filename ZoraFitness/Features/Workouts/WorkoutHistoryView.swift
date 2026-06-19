@@ -2,8 +2,10 @@ import SwiftUI
 
 struct WorkoutHistoryView: View {
     @Environment(HealthKitManager.self) private var healthKit
+    @Environment(SettingsStore.self)    private var settings
     @State private var viewModel = WorkoutHistoryViewModel()
     @State private var selectedSession: WorkoutSession?
+    @State private var showProfile = false
 
     var body: some View {
         NavigationStack {
@@ -21,9 +23,17 @@ struct WorkoutHistoryView: View {
             .navigationTitle("Workouts")
             .navigationBarTitleDisplayMode(.large)
             .toolbarColorScheme(.dark, for: .navigationBar)
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    AvatarButton(initials: initialsFromName(settings.officialName.isEmpty ? "You" : settings.officialName)) {
+                        showProfile = true
+                    }
+                }
+            }
             .sheet(item: $selectedSession) { session in
                 WorkoutDetailView(session: session, maxHeartRate: viewModel.maxHeartRate)
             }
+            .sheet(isPresented: $showProfile) { ProfileView() }
         }
         .task { await viewModel.load(using: healthKit) }
     }

@@ -53,6 +53,9 @@ private struct MainTabView: View {
             AnalyticsView()
                 .tabItem { Label("Analytics", systemImage: "chart.xyaxis.line") }
 
+            CrewView()
+                .tabItem { Label("Crew", systemImage: "person.3.fill") }
+
             SettingsView()
                 .tabItem { Label("Settings", systemImage: "gearshape.fill") }
         }
